@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import ReactDOM from "react-dom";
 
 export const Image = ({ url, setShowcaseURL }) => {
@@ -32,6 +32,18 @@ export const App = () => {
 
   const [images, setImages] = useState(defaultImages);
   const [newImageUrl, setNewImageUrl] = useState("");
+
+  useEffect(() => {
+    console.log("First render");
+  }, []);
+
+  useEffect(() => {
+    console.log("Always");
+  });
+
+  useEffect(() => {
+    console.log("Showcase state changed - render called");
+  }, [showcaseURL]);
 
   const imgComponents = images.map(url => {
     return <Image url={url} key={url} setShowcaseURL={setShowcaseURL} />;
